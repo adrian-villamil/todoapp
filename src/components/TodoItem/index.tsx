@@ -1,13 +1,31 @@
+import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { AppContext } from '../../context/AppContext';
 
-export const TodoItem: React.FC = () => {
+interface Props {
+  todo: Todo;
+}
+
+export const TodoItem: React.FC<Props> = ({ todo }) => {
+  const { toggleTodoStatus, deleteOneTodo } = React.useContext(AppContext) as TodoAppContext;
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    toggleTodoStatus(todo.id, event.target.checked);
+  };
+
+  const handleButtonClick = (): void => {
+    deleteOneTodo(todo.id);
+  };
+
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Checkbox
+        checked={todo.completed}
+        onChange={handleCheckboxChange}
         sx={{
           '&.Mui-checked': {
             color: '#2F80ED'
@@ -26,9 +44,10 @@ export const TodoItem: React.FC = () => {
           flex: 1
         }}
       >
-        Do coding challenges
+        {todo.details}
       </Typography>
       <IconButton
+        onClick={handleButtonClick}
         sx={{
           '&:hover': {
             backgroundColor: '#EB5757'
