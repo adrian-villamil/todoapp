@@ -1,20 +1,34 @@
-import Grid from '@mui/material/Grid';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { AppContext } from '../../context/AppContext';
 
 export const TodoForm: React.FC = () => {
+  const [todoDetails, setTodoDetails] = useState<string>('');
+  const { addTodo } = React.useContext(AppContext) as TodoAppContext;
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoDetails(event.target.value);
+  };
+
+  const handleButtonClick = (): void => {
+    if (todoDetails) {
+      addTodo(todoDetails);
+    }
+  };
+
   return (
     <>
       <Stack
         direction={'row'}
         alignItems={'stretch'}
         spacing={3}
-        // my={'20px'}
       >
         <TextField
           variant="outlined"
           placeholder="add details"
+          onChange={handleInputChange}
           InputProps={{
             style: {
               borderRadius: '12px',
@@ -28,6 +42,7 @@ export const TodoForm: React.FC = () => {
         />
         <Button
           variant="contained"
+          onClick={handleButtonClick}
           sx={{
             borderRadius: '12px',
             fontFamily: 'Montserrat',
