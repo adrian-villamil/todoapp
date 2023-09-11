@@ -1,8 +1,10 @@
+import React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import buttonClasses from '@mui/material/Button/buttonClasses';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { TodoItem } from '../../components/TodoItem';
+import { AppContext } from '../../context/AppContext';
 
 const DeleteButtonStyles = {
   width: 124,
@@ -21,16 +23,23 @@ const DeleteButtonStyles = {
 };
 
 export const CompletedTodos: React.FC = () => {
+  const { getCompletedTodos, deleteCompletedTodos } = React.useContext(AppContext) as TodoAppContext;
+
+  const handleButtonClick = (): void => {
+    deleteCompletedTodos();
+  };
+
   return (
     <Stack spacing={2} my={'10px'}>
       <Stack spacing={2}>
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {getCompletedTodos().map((todo) => {
+          return <TodoItem key={todo.id} todo={todo} />;
+        })}
       </Stack>
       <Stack direction={'row'} justifyContent={'flex-end'}>
         <Button
           variant='contained'
+          onClick={handleButtonClick}
           startIcon={<DeleteOutlineIcon />}
           sx={DeleteButtonStyles}
         >
