@@ -1,5 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface Props {
   children: React.ReactNode;
@@ -8,7 +9,7 @@ interface Props {
 export const AppContext = React.createContext<TodoAppContext | null>(null);
 
 export const AppContextProvider: React.FC<Props> = ({ children }) => {
-  const [todos, setTodos] = React.useState<Todo[]>([]);
+  const [todos, setTodos] = useLocalStorage('todos', []);
 
   const addTodo = (todoDetails: string): void => {
     const newTodo: Todo = {
