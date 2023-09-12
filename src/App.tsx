@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { styled } from '@mui/material/styles';
 import { AllTodos } from './pages/AllTodos';
 import { ActiveTodos } from './pages/ActiveTodos';
 import { CompletedTodos } from './pages/CompletedTodos';
+import { TodoFooter } from './components/TodoFooter';
+import { TodoHeader } from './components/TodoHeader';
+import { SxProps } from '@mui/system';
 import './App.css';
 
-const TabContent = styled(TabPanel)(({ theme }) => ({
-  padding: '0',
-}));
-
-const TabListStyles = {
+const tabListStyles: SxProps = {
   "& .MuiTabs-flexContainer": {
     justifyContent: 'space-around'
   },
@@ -41,45 +38,36 @@ export const App: React.FC = () => {
 
   return (
     <div className="App">
-      {/* TITLE */}
-      <Typography
-        sx={{
-          textAlign: 'center',
-          fontFamily: 'Raleway',
-          fontWeight: '700',
-          fontSize: '36px',
-          color: '#333333',
-          padding: '26px',
-          letterSpacing: '-1.62px'
-        }}
-      >
-        #todo
-      </Typography>
+      {/* HEADER */}
+      <TodoHeader />
 
-      {/* TABS */}
-      <Box sx={{ width: '100%', typography: 'body1' }}>
+      {/* MAIN */}
+      <Box sx={{ width: '100%', typography: 'body1', flex: 1 }}>
         <TabContext value={positionTab}>
           <Box sx={{ borderBottom: 1, borderColor: '#bdbdbd' }}>
             <TabList
               onChange={handleTabChange}
-              sx={TabListStyles}
+              sx={tabListStyles}
             >
               <Tab label='All' value='1' />
               <Tab label='Active' value='2' />
               <Tab label='Completed' value='3' />
             </TabList>
           </Box>
-          <TabContent value='1'>
+          <TabPanel value='1' sx={{ p: 0 }}>
             <AllTodos />
-          </TabContent>
-          <TabContent value='2'>
+          </TabPanel>
+          <TabPanel value='2' sx={{ p: 0 }}>
             <ActiveTodos />
-          </TabContent>
-          <TabContent value='3'>
+          </TabPanel>
+          <TabPanel value='3' sx={{ p: 0 }}>
             <CompletedTodos />
-          </TabContent>
+          </TabPanel>
         </TabContext>
       </Box>
+
+      {/* FOOTER */}
+      <TodoFooter />
     </div>
   );
 };
