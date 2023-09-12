@@ -5,8 +5,9 @@ import buttonClasses from '@mui/material/Button/buttonClasses';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { TodoItem } from '../../components/TodoItem';
 import { AppContext } from '../../context/AppContext';
+import { SxProps } from '@mui/system';
 
-const DeleteButtonStyles = {
+const DeleteButtonStyles: SxProps = {
   width: 124,
   height: 40,
   backgroundColor: '#EB5757',
