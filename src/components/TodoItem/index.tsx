@@ -22,43 +22,45 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Checkbox
-        checked={todo.completed}
-        onChange={handleCheckboxChange}
-        sx={{
-          '&.Mui-checked': {
-            color: '#2F80ED'
-          },
-          '& .MuiSvgIcon-root': {
-            fontSize: 32,
-          },
-          p: '0 4px 0 0',
-        }}
-      />
-      <Typography
-        sx={{
-          fontFamily: 'Montserrat',
-          fontWeight: '500',
-          fontSize: '18px',
-          flex: 1
-        }}
-      >
-        {todo.details}
-      </Typography>
-      <IconButton
-        onClick={handleButtonClick}
-        sx={{
-          '&:hover': {
-            backgroundColor: '#EB5757'
-          },
-          '&:hover .MuiSvgIcon-root': {
-            color: 'white'
-          }
-        }}
-      >
-        <DeleteOutlineIcon sx={{ color: '#BDBDBD' }} />
-      </IconButton>
-    </Box>
+    <>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Checkbox
+          checked={todo.completed}
+          onChange={handleCheckboxChange}
+          sx={{
+            '&.Mui-checked': {
+              color: '#2F80ED'
+            },
+            '& .MuiSvgIcon-root': {
+              fontSize: 32,
+            },
+            p: '0 4px 0 0',
+          }}
+        />
+        <Typography
+          sx={{
+            fontFamily: 'Montserrat',
+            fontWeight: '500',
+            fontSize: '18px',
+            flex: 1
+          }}
+        >
+          {todo.details}
+        </Typography>
+        <IconButton
+          onClick={handleButtonClick}
+          sx={{
+            '&:hover': {
+              backgroundColor: '#EB5757'
+            },
+            '&:hover .MuiSvgIcon-root': {
+              color: 'white'
+            }
+          }}
+        >
+          <DeleteOutlineIcon sx={{ color: '#BDBDBD' }} />
+        </IconButton>
+      </Box>
+    </>
   );
 };

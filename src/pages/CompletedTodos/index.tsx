@@ -31,22 +31,24 @@ export const CompletedTodos: React.FC = () => {
   };
 
   return (
-    <Stack spacing={2} my={'10px'}>
-      <Stack spacing={2}>
-        {getCompletedTodos().map((todo) => {
-          return <TodoItem key={todo.id} todo={todo} />;
-        })}
+    <>
+      <Stack spacing={2} my={'10px'}>
+        <Stack spacing={2}>
+          {getCompletedTodos().map((todo) => {
+            return <TodoItem key={todo.id} todo={todo} />;
+          })}
+        </Stack>
+        <Stack direction={'row'} justifyContent={'flex-end'}>
+          <Button
+            variant='contained'
+            onClick={handleButtonClick}
+            startIcon={<DeleteOutlineIcon />}
+            sx={DeleteButtonStyles}
+          >
+            delete all
+          </Button>
+        </Stack>
       </Stack>
-      <Stack direction={'row'} justifyContent={'flex-end'}>
-        <Button
-          variant='contained'
-          onClick={handleButtonClick}
-          startIcon={<DeleteOutlineIcon />}
-          sx={DeleteButtonStyles}
-        >
-          delete all
-        </Button>
-      </Stack>
-    </Stack>
+    </>
   );
 };
