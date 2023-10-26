@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { AppContext } from '../../context/AppContext';
 
 export const TodoForm: React.FC = () => {
-  const [todoDetails, setTodoDetails] = useState<string>('');
+  const [todoDetails, setTodoDetails] = React.useState<string>('');
   const { addTodo } = React.useContext(AppContext) as TodoAppContext;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTodoDetails(event.target.value);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleButtonClick();
+    }
+  };
+
   const handleButtonClick = (): void => {
     if (todoDetails) {
       addTodo(todoDetails);
+      setTodoDetails('');
     }
   };
 
@@ -26,9 +34,11 @@ export const TodoForm: React.FC = () => {
         spacing={3}
       >
         <TextField
+          value={todoDetails}
           variant="outlined"
           placeholder="add details"
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
           InputProps={{
             style: {
               borderRadius: '12px',
