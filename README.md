@@ -46,6 +46,7 @@ Live demo: [todoapp](https://todoapp-mocha.vercel.app/)
 
 - [React](https://react.dev/)
 - [Material UI](https://mui.com/)
+- [React Toastify](https://www.npmjs.com/package/react-toastify)
 
 ## Features
 
