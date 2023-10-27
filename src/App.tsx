@@ -10,6 +10,8 @@ import { CompletedTodos } from './pages/CompletedTodos';
 import { TodoFooter } from './components/TodoFooter';
 import { TodoHeader } from './components/TodoHeader';
 import { SxProps } from '@mui/system';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
 const tabListStyles: SxProps = {
@@ -68,6 +70,9 @@ export const App: React.FC = () => {
 
       {/* FOOTER */}
       <TodoFooter />
+
+      {/* TOAST NOTIFICATIONS */}
+      <ToastContainer />
     </div>
   );
 };
