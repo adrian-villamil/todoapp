@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import buttonClasses from '@mui/material/Button/buttonClasses';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { TodoItem } from '../../components/TodoItem';
+import { toast } from 'react-toastify';
 import { AppContext } from '../../context/AppContext';
 import { SxProps } from '@mui/system';
 
@@ -27,7 +28,24 @@ export const CompletedTodos: React.FC = () => {
   const { getCompletedTodos, deleteCompletedTodos } = React.useContext(AppContext) as TodoAppContext;
 
   const handleButtonClick = (): void => {
-    deleteCompletedTodos();
+    if (getCompletedTodos().length > 0) {
+      deleteCompletedTodos();
+      notify(false);
+    } else {
+      notify(true);
+    }
+  };
+
+  const notify = (completedEmpty: boolean): void => {
+    if (completedEmpty) {
+      toast.info('There are not completed tasks to delete right now.', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    } else {
+      toast.success('Deleted all completed tasks.', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }
   };
 
   return (

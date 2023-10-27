@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { toast } from 'react-toastify';
 import { AppContext } from '../../context/AppContext';
 
 interface Props {
@@ -15,10 +16,27 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     toggleTodoStatus(todo.id, event.target.checked);
+    notifyStatusChanged(event.target.checked);
   };
 
   const handleButtonClick = (): void => {
+    notifyDeletedTodo(todo.details);
     deleteOneTodo(todo.id);
+  };
+
+  const notifyDeletedTodo = (message: string): void => {
+    const details = message;
+    toast.success(`Deleted task: "${details}".`, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  };
+
+  const notifyStatusChanged = (completed: boolean): void => {
+    if (todo) {
+      toast.success(`"${todo.details}" is now ${completed ? 'completed' : 'active'}.`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }
   };
 
   return (

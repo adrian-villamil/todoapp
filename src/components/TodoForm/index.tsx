@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { toast } from 'react-toastify';
 import { AppContext } from '../../context/AppContext';
 
 export const TodoForm: React.FC = () => {
@@ -22,8 +23,16 @@ export const TodoForm: React.FC = () => {
   const handleButtonClick = (): void => {
     if (todoDetails) {
       addTodo(todoDetails);
+      notify(todoDetails);
       setTodoDetails('');
     }
+  };
+
+  const notify = (message: string): void => {
+    const details = message;
+    toast.success(`New task added: "${details}".`, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   };
 
   return (
