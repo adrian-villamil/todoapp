@@ -17,7 +17,7 @@ export const AppContextProvider: React.FC<Props> = ({ children }) => {
       details: todoDetails,
       completed: false,
     };
-    setTodos(state => ([...state, newTodo]));
+    setTodos((state) => ([...state, newTodo]));
   };
 
   const toggleTodoStatus = (todoId: string, status: boolean): void => {
@@ -41,11 +41,11 @@ export const AppContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   const getActiveTodos = (): Todo[] => {
-    return todos.filter(todo => todo.completed === false);
+    return todos.filter((todo) => todo.completed === false);
   };
   
   const getCompletedTodos = (): Todo[] => {
-    return todos.filter(todo => todo.completed === true);
+    return todos.filter((todo) => todo.completed === true);
   };
 
   return (

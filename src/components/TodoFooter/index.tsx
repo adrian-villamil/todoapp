@@ -37,7 +37,9 @@ export const TodoFooter: React.FC = () => {
       <Typography
         sx={typographyStyles}
       >
-        created by <Link href='https://github.com/adrian-villamil' sx={linkStyles}>adrian-villamil</Link> - devChallenges.io
+        created by {
+          <Link href='https://github.com/adrian-villamil' sx={linkStyles}>adrian-villamil</Link>
+        } - devChallenges.io
       </Typography>
     </Stack>
   );
