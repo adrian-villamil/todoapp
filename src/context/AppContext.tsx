@@ -30,7 +30,7 @@ export const AppContextProvider: React.FC<Props> = ({ children }) => {
     setTodos(updatedTodos);
   };
 
-  const deleteOneTodo = (todoId: string): void => {
+  const deleteTodoById = (todoId: string): void => {
     const updatedTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(updatedTodos);
   };
@@ -54,7 +54,7 @@ export const AppContextProvider: React.FC<Props> = ({ children }) => {
         todos,
         addTodo,
         toggleTodoStatus,
-        deleteOneTodo,
+        deleteTodoById,
         deleteCompletedTodos,
         getActiveTodos,
         getCompletedTodos,

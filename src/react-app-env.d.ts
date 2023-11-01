@@ -10,7 +10,7 @@ interface TodoAppContext {
   todos: Todo[];
   addTodo: (todoDetails: string) => void;
   toggleTodoStatus: (todoId: string, status: boolean) => void;
-  deleteOneTodo: (todoId: string) => void;
+  deleteTodoById: (todoId: string) => void;
   deleteCompletedTodos: () => void;
   getActiveTodos: () => Todo[];
   getCompletedTodos: () => Todo[];

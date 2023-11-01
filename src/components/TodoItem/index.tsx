@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const TodoItem: React.FC<Props> = ({ todo }) => {
-  const { toggleTodoStatus, deleteOneTodo } = React.useContext(AppContext) as TodoAppContext;
+  const { toggleTodoStatus, deleteTodoById } = React.useContext(AppContext) as TodoAppContext;
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     toggleTodoStatus(todo.id, event.target.checked);
@@ -21,7 +21,7 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
 
   const handleButtonClick = (): void => {
     notifyDeletedTodo(todo.details);
-    deleteOneTodo(todo.id);
+    deleteTodoById(todo.id);
   };
 
   const notifyDeletedTodo = (message: string): void => {
