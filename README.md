@@ -73,5 +73,5 @@ $ npm start
 
 ## Contact
 
-- GitHub [adrian-villamil](https://github.com/adrian-villamil)
-- Instagram [adrian_villamil_art](https://www.instagram.com/adrian_villamil_art/)
+- LinkedIn [Adrian Felipe Villamil Arias](https://www.linkedin.com/in/adrian-felipe-villamil-arias-260736222/)
+- Email adrian.villamil@unillanos.edu.co
