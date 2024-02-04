@@ -1,11 +1,10 @@
-import React from 'react';
 import Stack from '@mui/material/Stack';
 import { TodoItem } from "../../components/TodoItem";
 import { TodoForm } from "../../components/TodoForm";
-import { AppContext } from '../../context/AppContext';
+import { useAppContext } from '../../hooks/useAppContext';
 
 export const ActiveTodos: React.FC = () => {
-  const { getActiveTodos } = React.useContext(AppContext) as TodoAppContext;
+  const { getActiveTodos } = useAppContext();
 
   return (
     <>
